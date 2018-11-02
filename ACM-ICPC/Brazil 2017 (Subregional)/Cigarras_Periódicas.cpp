@@ -23,7 +23,7 @@ int main() {
         scanf("%lld", &C[i]);
         mmc = mcm(mmc, C[i]);
     }
-    
+
     for(int i = 1; i <= t; i++) {
         aux = mcm(i, mmc);
         if (aux > mx && aux <= t) {
