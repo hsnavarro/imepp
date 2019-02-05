@@ -1,6 +1,4 @@
-//
-// Created by Henrique Navarro on 28/08/2018.
-//
+// KMP - O(n + m)
 #include <bits/stdc++.h>
 using namespace std;
 
