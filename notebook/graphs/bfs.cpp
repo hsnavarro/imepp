@@ -9,11 +9,11 @@ queue<int> q;
 void bfs(int x){
     vis[x] = 1;
     q.push(x);
-    while(!q.empty){
+    while(!q.empty()){
         int u = q.front(); q.pop();
-        for(auto u : adj[x]) if(!vis[u]){
-            vis[u] = 1;
-            q.push(u);
+        for(auto v : adj[u]) if(!vis[v]){
+            vis[v] = 1;
+            q.push(v);
         }
     }
 }
