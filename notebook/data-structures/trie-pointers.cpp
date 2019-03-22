@@ -2,23 +2,21 @@
 
 class Node{
   public:
-
   bool isEnd;
   Node* f[26];
   Node(){
+    isEnd = false;
     for(int i = 0; i < 26; i++) f[i] = nullptr;
   }
 };
 
 class Trie{
   public:
-
   Node* root = new Node();
 
   Node* insert(char input, Node* lastNode){
     int index = input - 'a';
     if(lastNode -> f[index] != nullptr) return lastNode -> f[index];
-
     Node* answer = new Node();
     lastNode -> f[index] = answer;
     return answer;
