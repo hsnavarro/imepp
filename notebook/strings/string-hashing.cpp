@@ -1,7 +1,7 @@
 // String Hashing - O(n + m)
 const int MOD = 1e9+9;
-char s[N], t[N];
-int n;
+char s[N];
+int n; // n = strlen(s)
 ll sum[N], p[N+1] = {1, 313};
 
 void build(char* s){
@@ -18,9 +18,3 @@ int hashsimple(char* s, int l = 0, int r = n-1, ll ans = 0){
   for(int i = l; i <= r; i++) ans = (ans + p[r-i]*s[i]%MOD)%MOD;
   return p[N]*ans%MOD;
 }
-
-// in main
-  scanf("%s", s);
-  scanf(" %s", t);
-  n = strlen(s);
-  build(s);
