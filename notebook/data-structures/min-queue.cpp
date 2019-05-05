@@ -1,7 +1,7 @@
-// Min_Queue
+// Min Queue
 // Operations in O(1)
 
-struct min_queue{
+struct MinQueue{
     vector<pii> s1, s2;
 
     int size(){ return s1.size() + s2.size(); }
