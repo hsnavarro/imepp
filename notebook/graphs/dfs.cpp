@@ -3,7 +3,7 @@
 const int N = 1e5 + 5;
 
 int vis[N];
-vi adj[N];
+vector<int> adj[N];
 
 void dfs(int x){
     vis[x] = 1;
