@@ -14,6 +14,6 @@ void kahn(){
 
   while(q.size()){
     int u = q.front(); q.pop();
-    for(auto x : adj[u]) if(in[v]-- and !in[v]) q.push(v);
+    for(auto x : adj[u]) if(in[x] and --in[x] == 0) q.push(x);
   }
 }
