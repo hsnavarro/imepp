@@ -3,29 +3,29 @@
 const int N = 1e6;
 const int M = 25; //m = log N
 
-int anc[N][M], h[N], rt;
+int anc[M][N], h[N], rt;
 vector<int> adj[N];
 
 void dfs(int x = rt, int p = -1, int ht = 0){
-  anc[x][0] = p, h[x] = ht;
+  anc[0][X] = p, h[x] = ht;
   for(auto v : adj[x]) if(v != p) dfs(v, x, ht+1);
 }
 
 void build(){
-  dfs(), anc[rt][0] = rt;
+  dfs(), anc[0][rt] = rt;
 
   for(int j = 1; j < M; j++)
     for(int i = 1; i <= n; i++) // 1-indexed
-      anc[i][j] = anc[anc[i][j-1]][j-1];
+      anc[j][i] = anc[j-1][anc[j-1][i]];
 }
 
 int lca(int u, int v){
   if(h[u] < h[v]) swap(u, v);
-  for(int i = M-1; i >= 0; i--) if(h[u] - (1<<i) >= h[v]) u = anc[u][i];
+  for(int i = M-1; i >= 0; i--) if(h[u] - (1<<i) >= h[v]) u = anc[i][u];
   
   if(u == v) return u;
-  for(int i = M-1; i >= 0; i--) if(anc[u][i] != anc[v][i])
-    u = anc[u][i], v = anc[v][i];
+  for(int i = M-1; i >= 0; i--) if(anc[i][u] != anc[i][v])
+    u = anc[i][u], v = anc[i][v];
 
-  return anc[u][0];
+  return anc[0][u];
 }
