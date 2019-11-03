@@ -1,45 +1,44 @@
-// 2-SAT - O(V + E)
+// 2-SAT - O(V+E)
 
-const int M = 2*N + 5;
+int n, vis[2*N], ord[2*N], ordn, cnt, cmp[2*N], val[N];
+vector<int> adj[2*N], adjt[2*N];
 
-int n, vis[M], comp[M];
-vector<int> adj[M], adji[M], st;
-vector<int> ans;
+// for a variable u with idx i
+// u is 2*i and !u is 2*i+1
+// (a v b) == !a -> b ^ !b -> a
 
-// For each variable x, we create two nodes in the graph: u and !u
-// If the variable has index i, the index of u and !u are: 2*i and 2*i+1
-// Add statement u or v => !u -> v or !v -> u 
-void add(int u, int v){
-  adj[u^1].push_back(v);
-  adj[v^1].push_back(u);
-  adji[v].push_back(u^1);
-  adji[u].push_back(v^1);
+int v(int x) { return 2*x; }
+int nv(int x) { return 2*x+1; }
+
+// add clause (a v b)
+void add(int a, int b){
+  adj[a^1].push_back(b);
+  adj[b^1].push_back(a);
+  adjt[b].push_back(a^1);
+  adjt[a].push_back(b^1);
 }
 
-void dfs1(int x){
+void dfs(int x){
   vis[x] = 1;
-  for(auto v : adj[x]) if(!vis[v]) dfs1(v);
-  st.push_back(x);
+  for(auto v : adj[x]) if(!vis[v]) dfs(v);
+  ord[ordn++] = x;
 }
 
-void dfs2(int x, int i){
-  vis[x] = 0;
-  comp[x] = i;
-  for(auto v : adji[x]) if(vis[v]) dfs2(v, i);
+void dfst(int x){
+  cmp[x] = cnt, vis[x] = 0;
+  for(auto v : adjt[x]) if(vis[v]) dfst(v);
 }
 
-bool sat(){
-  for(int i = 2; i <= 2*n+1; i++) if(!vis[i]) dfs1(i);
-  int idx = 1;
-  while(st.size()){
-    int x = st.back(); st.pop_back();
-    if(vis[x]) dfs2(x, idx++);
+bool run2sat(){
+  for(int i = 1; i <= n; i++) {
+    if(!vis[v(i)]) dfs(v(i));
+    if(!vis[nv(i)]) dfs(nv(i));
   }
-  ans.assign(n/2, 0);
-  for(int i = 2; i <= 2*n+1; i += 2){
-    if(comp[i] == comp[i+1]) return false;
-    ans[i/2] = comp[i] > comp[i+1];
+  for(int i = ordn-1; i >= 0; i--) 
+    if(vis[ord[i]]) cnt++, dfst(ord[i]);
+  for(int i = 1; i <= n; i ++){
+    if(cmp[v(i)] == cmp[nv(i)]) return false;
+    val[i] = cmp[v(i)] > cmp[nv(i)];
   }
   return true;
 }
-
