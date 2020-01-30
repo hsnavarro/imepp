@@ -5,25 +5,22 @@ const int N = 1e5 + 5;
 
 int lps[N], cont;
 
-void preKMP(string &p){
-    lps[0] = 0;
-    int j = 0;
-    for (int i = 1, m = p.size(); i < m; i++) {
-        while (j > 0 and p[j] != p[i]) j = lps[j-1];
-        if (p[j] == p[i]) j++;
-        lps[i] = j;
-    }
+void prekmp(string &p){
+  for (int i = 1, j = 0; i < p.size(); i++) {
+    while (j > 0 and p[j] != p[i]) j = lps[j-1];
+    if (p[j] == p[i]) j++;
+    lps[i] = j;
+  }
 }
 
-void KMP(string &p, string &t) {
-   int j = 0;
-    for (int i = 0, n = p.size(), m = t.size(); i < n; i++) {
-        while (j > 0 and p[j] != t[i]) j = lps[j-1];
-        if (p[j] == t[i]) j++;
-        if (j == m) {
-            // match i-j+1
-            cont++;
-            j = lps[j-1];
-        }
+void kmp(string &s, string &p) {
+  for (int i = 0, j = 0; i < s.size(); i++) {
+    while (j > 0 and p[j] != s[i]) j = lps[j-1];
+    if (p[j] == s[i]) j++;
+    if (j == p.size()) {
+      // match i-j+1
+      cont++;
+      j = lps[j-1];
     }
+  }
 }
