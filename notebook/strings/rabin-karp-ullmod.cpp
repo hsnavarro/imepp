@@ -6,7 +6,7 @@ int n, m; // n = strlen(s), m = strlen(p)
 // Chance of collision for k generated values and N possible hash values
 // e^(-k*(k-1)/2*N)
 
-int rabit(){
+int rabin(){
   if(n < m) return 0;
   ull hp = 0, hs = 0, E = 1, oc = 0;
   for(int i = 0; i < m; i++){
