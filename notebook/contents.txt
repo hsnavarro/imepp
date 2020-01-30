@@ -1,0 +1,52 @@
+# Any line followed by a '#' character is ignored
+# Section headings must be in square brackets
+# Subsections within a section should follow the format:
+#   [filename within code directory][tab character \t][subsection title]
+
+[Graphs]
+graphs/dfs.cpp	DFS
+graphs/bfs.cpp	BFS
+#graphs/zero-one-bfs.cpp ZERO-ONE-BFS
+graphs/kahn.cpp	Toposort
+graphs/kruskal.cpp	MST (Kruskal)
+graphs/prim.cpp	MST (Prim)
+graphs/dijkstra.cpp	Shortest Path (Dijkstra)
+graphs/dinic.cpp	Max Flow
+graphs/kuhn.cpp	Max Bipartite Cardinality Matching (Kuhn)
+graphs/lca.cpp	Lowest Common Ancestor
+graphs/2-sat.cpp	2-SAT
+
+[Mathematics]
+math/fexp.cpp	Fast Exponential
+
+[Strings]
+strings/rabin-karp.cpp	Rabin-Karp
+strings/kmp.cpp	Knuth-Morris-Pratt
+strings/z-function.cpp	Z Function
+#strings/string-hashing.cpp String Hashing
+#strings/rabin-karp-fast-hash.cpp Rabin-Karp for Multiple Hashing
+#strings/rabin-karp-ullmod.cpp Rabin-Karp with ULL Overflow as Mod
+
+[Data Structures]
+data-structures/bit-range-update-point-query.cpp BIT (Range Update, Point Query)
+data-structures/min-queue.cpp	Min Queue Stack
+data-structures/min-queue-deque.cpp Min Queue Deque
+data-structures/persistent-segment-tree.cpp Persistent SegTree
+data-structures/segment-tree.cpp SegTree with Lazy
+data-structures/segment-tree-point-update.cpp SegTree
+data-structures/union-find.cpp Union Find Simple
+data-structures/union-find-rollback.cpp Union Find with Rollback
+data-strcutures/union-find-partial-persistent.cpp Union Find Partial Persistent
+
+[Dynamic Programming]
+dynamic-programming/convex-hull-trick.cpp	Convex Hull Trick
+
+[Geometry]
+geometry/convex-hull-graham-scan.cpp Convex Hull
+geometry/welzl.cpp	Welzl
+
+[Miscellaneous]
+misc/merge-sort.cpp Merge Sort
+misc/pbs.cpp Parallel Binary Search
+misc/ternary-search.cpp	Ternary Search
+misc/ternary-search-double.cpp Ternary Search with Double

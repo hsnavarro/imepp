@@ -1,47 +1,29 @@
 // KMP - O(n + m)
-#include <bits/stdc++.h>
-using namespace std;
 
+// max size pattern
 const int N = 1e5 + 5;
 
-char t[N], p[N];
-int lps[N], cont, m, n;
+int lps[N], cont;
 
-void preKMP(char* p){
+void preKMP(string &p){
     lps[0] = 0;
     int j = 0;
-    for (int i=1; i < m; i++) {
+    for (int i = 1, m = p.size(); i < m; i++) {
         while (j > 0 and p[j] != p[i]) j = lps[j-1];
         if (p[j] == p[i]) j++;
         lps[i] = j;
     }
 }
 
-void KMP(char* p, char* t) {
+void KMP(string &p, string &t) {
    int j = 0;
-    for (int i = 0; i < n; i++) {
+    for (int i = 0, n = p.size(), m = t.size(); i < n; i++) {
         while (j > 0 and p[j] != t[i]) j = lps[j-1];
         if (p[j] == t[i]) j++;
         if (j == m) {
+            // match i-j+1
             cont++;
-            j = lps[j];
+            j = lps[j-1];
         }
     }
-}
-
-int main(){
-
-    cin >> t;
-    cin >> p;
-
-    m = strlen(p);
-    n = strlen(t);
-
-    preKMP(p);
-    KMP(p, t);
-
-   printf("%d\n", cont);
-
-    return 0;
-
 }
