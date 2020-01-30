@@ -40,7 +40,7 @@ int dfs(int u, int flow) {
   for(int &i = st[u]; i < g[u].size(); i++) {
     edge &dir = edgs[g[u][i]], &rev = edgs[g[u][i]^1];
     int v = dir.v;
-    if(h[u] != h[v] + 1) continue;
+    if(h[v] != h[u] + 1) continue;
     int inc = min(flow, dir.c - dir.f);
     inc = dfs(v, inc);
     if(inc) {
