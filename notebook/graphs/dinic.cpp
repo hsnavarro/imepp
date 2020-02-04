@@ -1,5 +1,6 @@
-#include <bits/stdc++.h>
-using namespace std;
+// Dinic - O(n^2 * m)
+// Max flow
+
 
 const int N = 1e5 + 5;
 const int INF = 0x3f3f3f3f;
@@ -58,9 +59,4 @@ int dinic() {
     while(int inc = dfs(s, INF)) flow += inc;
   }
   return flow;
-}
-
-int main(){
-
-
 }
