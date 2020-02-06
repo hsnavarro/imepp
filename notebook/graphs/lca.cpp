@@ -7,7 +7,7 @@ int anc[M][N], h[N], rt;
 vector<int> adj[N];
 
 void dfs(int x = rt, int p = -1, int ht = 0){
-  anc[0][X] = p, h[x] = ht;
+  anc[0][x] = p, h[x] = ht;
   for(auto v : adj[x]) if(v != p) dfs(v, x, ht+1);
 }
 
