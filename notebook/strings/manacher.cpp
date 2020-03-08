@@ -1,6 +1,8 @@
 // Manacher - O(n)
 
-// d1 -> odd, d2 -> even
+// d1 -> odd : size = 2*d1[i] - 1
+// d2 -> even : size = 2*d2[i]
+
 
 vector<int> d1, d2;
 
