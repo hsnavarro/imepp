@@ -1,0 +1,54 @@
+syntax on
+set encoding=utf-8
+set et ts=2 sw=0 sts=-1 ai nu hls cindent
+set noswapfile
+set mouse=a
+"colorscheme darcula
+set t_Co=256
+set t_ut=
+colorscheme codedark
+nnoremap ; :
+vnoremap ; :
+noremap <c-j> 15gj
+noremap <c-k> 15gk
+nnoremap <s-k> i<CR><ESC>
+inoremap ,. <esc>
+vnoremap ,. <esc>
+nnoremap ,. <esc>
+
+let g:darcula_colorterm = 0
+
+"hi Normal guibg=NONE ctermbg=NONE
+
+if empty(glob('~/.vim/autoload/plug.vim'))
+  silent !curl -fLo ~/.vim/autoload/plug.vim --create-dirs
+    \ https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+  autocmd VimEnter * PlugInstall --sync | source $MYVIMRC
+endif
+
+"Plugins
+call plug#begin('~/.vim/plugged')
+Plug 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'tpope/vim-fugitive'
+Plug 'tomasiser/vim-code-dark'
+call plug#end()
+
+let g:airline_powerline_fonts = 1
+set guifont=Inconsolata\ for\ Powerline:h1
+let g:Powerline_symbols = 'fancy'
+set encoding=utf-8
+set fillchars+=stl:\ ,stlnc:\
+set term=xterm-256color
+nmap <F8> :tabprev<CR>
+nmap <F9> :tabnext<CR>
+
+let g:airline#extensions#tabline#enabled = 1
+let g:airline#extensions#branch#enabled=1
+"let g:airline_theme='badwolf'
+let g:airline_theme='codedark'
+let g:airline#extensions#tabline#enabled=1
+let g:airline#extensions#tabline#formatter='unique_tail'
+let g:airline_powerline_fonts=1
+let g:airline_section_a = airline#section#create(['mode', ' ', 'branch'])
+
