@@ -10,8 +10,16 @@ vector<int> adj[2*N], adjt[2*N];
 int v(int x) { return 2*x; }
 int nv(int x) { return 2*x+1; }
 
+// add a -> b
+void add(int a, int b) {
+  adj[a].push_back(b);
+  adj[b^1].push_back(a^1);
+  adjt[b].push_back(a);
+  adjt[a^1].push_back(b^1);
+}
+
 // add clause (a v b)
-void add(int a, int b){
+void add_or(int a, int b){
   adj[a^1].push_back(b);
   adj[b^1].push_back(a);
   adjt[b].push_back(a^1);
