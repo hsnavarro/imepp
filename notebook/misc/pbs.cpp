@@ -1,4 +1,4 @@
-//Parallel Binary Search - O(nlog²n + q)
+//Parallel Binary Search - O(nlog^2 n + q)
 
 struct Query{ int l, r, i, ans;};
 vector<Query> req;

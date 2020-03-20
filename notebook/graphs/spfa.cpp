@@ -1,3 +1,5 @@
+// Shortest Path Faster Algoritm O(VE)
+
 int n, inq[N], dist[N];
 vector<pair<int, int>> adj[N];
 
