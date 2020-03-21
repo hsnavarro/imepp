@@ -9,10 +9,7 @@ void add(int p, int v) {
     for (p+=2; p<N; p+=p&-p) bit[p] += v;
 }
 
-void update(int l, int r, int val){
-    add(l, val);
-    if(r != N) add(r+1, -val);
-}
+void update(int l, int r, int val) { add(l, val), add(r+1, -val); }
 
 int query(int p) {
     int r = 0;
