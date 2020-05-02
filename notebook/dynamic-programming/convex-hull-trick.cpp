@@ -1,5 +1,9 @@
 // Convex Hull Trick
 
+// max / min (a_i + m_j * x_i + b_j)
+// max : m_j increasing, b_j decreasing
+// min : m_j decreasing, b_j increasing
+
 typedef long long type;
 struct line { type b, m; };
 
@@ -26,6 +30,7 @@ type eval(int id, type x) { return hull[id].b + hull[id].m*x; }
 /*
 type query(type x){
   while(pos+1 < nh and eval(pos, x) > eval(pos+1, x)) pos++;
+  // max: change '<' to '>'
   return eval(pos, x);
 }
 */
@@ -34,10 +39,13 @@ type query(type x){
   int l = 0, r = nh-1, mid;
   while(r - l > 5){
     mid = (l+r)/2;
+    // max change '<' to '>'
     if(eval(mid+1, x) < eval(mid, x)) l = mid;
     else r = mid+1;
   }
   type mn = LINF;
+  // max change LINF to -LINF 
   for(int i = l; i <= r; i++) mn = min(mn, eval(i, x)); 
+  // max change min to max
   return mn;
 }
