@@ -4,15 +4,18 @@
 // max size txt + 1
 const int N = 1e6 + 5;
 
-// lowercase letters p = 31
-// uppercase letters p = 53
+// lowercase letters p = 31 (remember to do s[i] - 'a' + 1)
+// uppercase and lowercase letters p = 53 (remember to do s[i] - 'a' + 1)
 // any character p = 313
 
 const int MOD = 1e9+9;
-ull h[N], p[N] = {1, 31};
+ull h[N], p[N];
+
 int cnt;
 
+
 void build(string &s) {
+  p[0] = 1, p[1] = 313;
   for(int i = 1; i <= s.size(); i++) {
     h[i] = ((p[1]*h[i-1]) % MOD + s[i-1]) % MOD;
     p[i] = (p[1]*p[i-1]) % MOD;
