@@ -5,7 +5,7 @@ int n, cnt, vis[N], match[N], ans;
 bool find(int u){
   if(vis[u] == cnt) return false;
   vis[u] = cnt;
-  for(auto v : adj[u]) if(!match[v] or find(match[v])) return match[v] = x;
+  for(auto v : adj[u]) if(!match[v] or find(match[v])) return match[v] = u;
   return false;
 }
 
