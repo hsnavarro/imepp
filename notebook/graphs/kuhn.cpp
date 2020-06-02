@@ -1,6 +1,7 @@
 // Khun (Maximum Bipartite Matching) - O(VE)
 
 int n, cnt, vis[N], match[N], ans;
+vector<int> adj[N];
 
 bool find(int u){
   if(vis[u] == cnt) return false;
