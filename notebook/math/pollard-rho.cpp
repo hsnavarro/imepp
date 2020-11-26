@@ -4,11 +4,16 @@ mt19937_64 llrand((int) chrono::steady_clock::now().time_since_epoch().count());
 
 ll gcd(ll a, ll b) { return b ? gcd(b, a % b) : a; };
 
+ll addmod(ll a, ll b, ll mod) {
+  if(a >= mod - b) return a + b - mod;
+  return a + b;
+}
+
 ll mulmod(ll a, ll b, ll mod) {
   ll ans = 0;
   while(b) {
-    if(b & 1) ans = (ans + a) % mod;
-    a = (2*a) % mod;
+    if(b & 1) ans = addmod(ans, a, mod);
+    a = addmod(a, a, mod);
     b = b/2;
   }
   return ans;
@@ -49,9 +54,9 @@ ll rho(ll n) {
     ll x = llrand() % (n - 2) + 2, c = llrand() % (n - 2) + 1;
     ll y = x, d = 1;
     while(d == 1) {
-      x = (mulmod(x, x, n) + c) % n;
-      y = (mulmod(y, y, n) + c) % n;
-      y = (mulmod(y, y, n) + c) % n;
+      x = addmod(mulmod(x, x, n), c, n);
+      y = addmod(mulmod(y, y, n), c, n);
+      y = addmod(mulmod(y, y, n), c, n);
       d = gcd(abs(x - y), n);
     }
     if(d != n) return d;
