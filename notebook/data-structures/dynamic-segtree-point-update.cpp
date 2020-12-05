@@ -14,7 +14,7 @@ void update(int idx, int val, int p = 0, int l = 1, int r = SIZE) {
   lc[p] = id(lc[p]);
   rc[p] = id(rc[p]);
 
-  int mid = (l + r) >> 1;
+  int mid = (l + r) / 2;
   if (idx <= mid) update(idx, val, lc[p], l, mid);
   else update(idx, val, rc[p], mid + 1, r);
 
@@ -24,7 +24,7 @@ void update(int idx, int val, int p = 0, int l = 1, int r = SIZE) {
 int query(int i, int j, int p = 0, int l = 1, int r = SIZE) {
   if (r < i or j < l) return 0ll;
   if (i <= l and r <= j) return st[p];
-  int mid = (l + r) >> 1;
+  int mid = (l + r) / 2;
   lc[p] = id(lc[p]);
   rc[p] = id(rc[p]);
 
