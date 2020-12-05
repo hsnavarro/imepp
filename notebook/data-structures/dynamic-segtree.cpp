@@ -29,7 +29,7 @@ void update(int i, int j, int x, int p = 0, int l = 1, int r = SIZE) {
   push(p, l, r);
   if (r < i or l > j) return;
   if (i <= l and r <= j) { lz[p] = x, push(p, l, r); return; }
-  int mid = (l + r) >> 1;
+  int mid = (l + r) / 2;
   lc[p] = id(lc[p]);
   rc[p] = id(rc[p]);
 
@@ -43,7 +43,7 @@ int query(int i, int j, int p = 0, int l = 1, int r = SIZE) {
   push(p, l, r);
   if (r < i or l > j) return 0;
   if (i <= l and r <= j) return st[p];
-  int mid = (l + r) >> 1;
+  int mid = (l + r) / 2;
   lc[p] = id(lc[p]);
   rc[p] = id(rc[p]);
 
