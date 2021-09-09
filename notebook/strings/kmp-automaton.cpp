@@ -1,23 +1,29 @@
-// KMP Automaton - <O(26*pattern), O(text)>
+// KMP Automaton - <O(ALPHA * |pattern|), O(|text|)>
 
-// max size pattern
-const int N = 1e5 + 5;
+template<int ALPHA_SIZE = 26>
+struct KmpAutomaton {
+	int sz, num_match;
+	vector<vector<int>> nxt;
 
-int cnt, nxt[N+1][26];
+	// change this if different alphabet
+	int remap(char c) { return c - 'a'; }
 
-void prekmp(string &p) {
-  nxt[0][p[0] - 'a'] = 1;
-  for(int i = 1, j = 0; i <= p.size(); i++) {
-    for(int c = 0; c < 26; c++) nxt[i][c] = nxt[j][c];
-    if(i == p.size()) continue;
-    nxt[i][p[i] - 'a'] = i+1;
-    j = nxt[j][p[i] - 'a'];
-  }
-}
+	KmpAutomaton(string &pat) : sz((int)pat.size()), nxt(sz + 1, vector<int>(ALPHA_SIZE)) {
+		nxt[0][remap(pat[0])] = 1;
+		for (int i = 1, j = 0; i <= sz; i++) {
+			for (int c = 0; c < ALPHA_SIZE; c++) nxt[i][c] = nxt[j][c];
+			if (i == sz) continue;
+			nxt[i][remap(pat[i])] = i + 1;
+			j = nxt[j][remap(pat[i])];
+		}
+	}
 
-void kmp(string &s, string &p) {
-  for(int i = 0, j = 0; i < s.size(); i++) {
-    j = nxt[j][s[i] - 'a'];
-    if(j == p.size()) cnt++; //match i - j + 1
-  }
-}
+	int kmp(string &s) {
+		num_match = 0;
+		for (int i = 0, j = 0; i < (int)s.size(); i++) {
+			j = nxt[j][remap(s[i])];
+			if (j == sz) num_match++; // match: i - j + 1
+		}
+		return num_match;
+	}
+};
